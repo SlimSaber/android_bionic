@@ -522,8 +522,12 @@
     __attribute__ ((always_inline)) \
     __attribute__ ((gnu_inline)) \
     __attribute__ ((artificial))
-#endif
+#define __BIONIC_FORTIFY_INLINE_WITHOUT_ALWAYS \
+    extern inline \
+    __attribute__ ((gnu_inline)) \
+    __attribute__ ((artificial))
 #define __BIONIC_FORTIFY_UNKNOWN_SIZE ((size_t) -1)
+#endif
 
 /* Android-added: for FreeBSD's libm. */
 #define __weak_reference(sym,alias) \
