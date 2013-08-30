@@ -29,23 +29,15 @@
  */
 
 #include <string.h>
-#include "libc_logging.h"
 
 char *
-__strchr_chk(const char *p, int ch, size_t s_len)
+strchr(const char *p, int ch)
 {
-	for (;; ++p, s_len--) {
-		if (s_len == 0)
-			__fortify_chk_fail("strchr read beyond buffer", 0);
+	for (;; ++p) {
 		if (*p == (char) ch)
 			return((char *)p);
 		if (!*p)
 			return((char *)NULL);
 	}
 	/* NOTREACHED */
-}
-
-char *
-strchr(const char *p, int ch) {
-    return __strchr_chk(p, ch, __BIONIC_FORTIFY_UNKNOWN_SIZE);
 }
