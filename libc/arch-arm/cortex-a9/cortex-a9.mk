@@ -8,6 +8,7 @@ else
 $(call libc-add-cpu-variant-src,MEMMOVE,bionic/memmove.c.arm)
 $(call libc-add-cpu-variant-src,BCOPY,string/bcopy.c.arm)
 endif
+$(call libc-add-cpu-variant-src,STRCHR,arch-arm/armv7/strchr.S)
 $(call libc-add-cpu-variant-src,STRCPY,arch-arm/armv7/strcpy.c)
 $(call libc-add-cpu-variant-src,STRLEN,arch-arm/armv7/strlen.S)
 
