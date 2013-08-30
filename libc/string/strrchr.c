@@ -29,26 +29,16 @@
  */
 
 #include <string.h>
-#include "libc_logging.h"
 
 char *
-__strrchr_chk(const char *p, int ch, size_t s_len)
+strrchr(const char *p, int ch)
 {
 	char *save;
-
-	for (save = NULL;; ++p, s_len--) {
-		if (s_len == 0)
-			__fortify_chk_fail("strrchr read beyond buffer", 0);
+	for (save = NULL;; ++p) {
 		if (*p == (char) ch)
 			save = (char *)p;
 		if (!*p)
 			return(save);
 	}
 	/* NOTREACHED */
-}
-
-char *
-strrchr(const char *p, int ch)
-{
-	return __strrchr_chk(p, ch, __BIONIC_FORTIFY_UNKNOWN_SIZE);
 }
