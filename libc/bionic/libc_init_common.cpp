@@ -59,8 +59,8 @@ char** environ;
 uintptr_t __stack_chk_guard = 0;
 
 // Declared in <asm/page.h>.
-unsigned int __page_size = PAGE_SIZE;
-unsigned int __page_shift = PAGE_SHIFT;
+extern "C" unsigned int __page_size = PAGE_SIZE;
+extern "C" unsigned int __page_shift = PAGE_SHIFT;
 
 /* Init TLS for the initial thread. Called by the linker _before_ libc is mapped
  * in memory. Beware: all writes to libc globals from this function will
