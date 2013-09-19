@@ -460,7 +460,6 @@ libc_common_cflags := \
     -D_LIBC=1 \
     -DFLOATING_POINT \
     -DINET6 \
-    -fno-strict-aliasing \
     -I$(LOCAL_PATH)/private \
     -DPOSIX_MISTAKE \
     -DLOG_ON_HEAP_ERROR \
@@ -472,23 +471,22 @@ libc_common_cflags := \
 #
 libc_common_cflags += \
     -DTM_GMTOFF=tm_gmtoff \
-    -DUSG_COMPAT=1 \
-    -fno-strict-aliasing
+    -DUSG_COMPAT=1
 
 ifeq ($(strip $(DEBUG_BIONIC_LIBC)),true)
-  libc_common_cflags += -DDEBUG -fno-strict-aliasing
+  libc_common_cflags += -DDEBUG
 endif
 
 # To customize dlmalloc's alignment, set BOARD_MALLOC_ALIGNMENT in
 # the appropriate BoardConfig.mk file.
 #
 ifneq ($(BOARD_MALLOC_ALIGNMENT),)
-  libc_common_cflags += -DMALLOC_ALIGNMENT=$(BOARD_MALLOC_ALIGNMENT) -fno-strict-aliasing
+  libc_common_cflags += -DMALLOC_ALIGNMENT=$(BOARD_MALLOC_ALIGNMENT)
 endif
 
 ifeq ($(TARGET_ARCH),arm)
   libc_common_cflags += -DSOFTFLOAT
-  libc_common_cflags += -fno-strict-aliasing
+  libc_common_cflags += -fstrict-aliasing
   libc_crt_target_cflags := -mthumb-interwork
 endif # !arm
 
@@ -507,7 +505,7 @@ ifeq ($(TARGET_ARCH),mips)
   ifneq ($(ARCH_MIPS_HAS_FPU),true)
     libc_common_cflags += -DSOFTFLOAT
   endif
-  libc_common_cflags += -fno-strict-aliasing
+  libc_common_cflags += -fstrict-aliasing
   libc_crt_target_cflags := $(TARGET_GLOBAL_CFLAGS)
 endif # mips
 
