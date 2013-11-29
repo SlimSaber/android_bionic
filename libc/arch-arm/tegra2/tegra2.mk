@@ -6,6 +6,7 @@ $(call libc-add-cpu-variant-src,MEMMOVE,bionic/memmove.c.arm)
 $(call libc-add-cpu-variant-src,BCOPY,string/bcopy.c.arm)
 
 $(call libc-add-cpu-variant-src,STRCAT,string/strcat.c)
+$(call libc-add-cpu-variant-src,STRCHR,string/strchr.c)
 
 # armv7-a (non neon) ones from cm10.1
 $(call libc-add-cpu-variant-src,STRLEN,arch-arm/tegra2/bionic/strlen.S)
