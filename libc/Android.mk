@@ -101,6 +101,7 @@ libc_common_src_files := \
 	bionic/ldexp.c \
 	bionic/lseek64.c \
 	bionic/md5.c \
+	bionic/memchr.c \
 	bionic/memmem.c \
 	bionic/memswap.c \
 	bionic/name_mem.c \
