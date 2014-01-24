@@ -45,8 +45,10 @@ libc_common_src_files := \
 	stdio/wbuf.c \
 	stdlib/atexit.c \
 	stdlib/ctype_.c \
+	stdlib/_Exit.c \
 	stdlib/getenv.c \
 	stdlib/putenv.c \
+	stdlib/quick_exit.c \
 	stdlib/setenv.c \
 	stdlib/strtod.c \
 	stdlib/strtoimax.c \
@@ -366,14 +368,10 @@ libc_upstream_netbsd_src_files := \
 # =========================================================
 ifeq ($(TARGET_ARCH),arm)
 libc_common_src_files += \
-	string/strncmp.c \
-	string/strncat.c \
 	string/strncpy.c \
 	string/strrchr.c \
 	bionic/memrchr.c \
 	string/index.c \
-	bionic/strnlen.c \
-	string/strlcat.c \
 	string/strlcpy.c \
 	upstream-freebsd/lib/libc/string/wcschr.c \
 	upstream-freebsd/lib/libc/string/wcsrchr.c \
@@ -532,6 +530,10 @@ ifeq ($(TARGET_ARCH),x86)
       libc_crt_target_cflags += -DUSE_SSSE3=1
   endif
 endif # x86
+
+ifeq ($(ARCH_ARM_HAVE_ARMV7A),true)
+  libc_common_cflags += -DNEON_UNALIGNED_ACCESS -DNEON_MEMCPY_ALIGNMENT_DIVIDER=224
+endif
 
 ifeq ($(TARGET_ARCH),mips)
   ifneq ($(ARCH_MIPS_HAS_FPU),true)
