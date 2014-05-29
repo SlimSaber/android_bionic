@@ -219,6 +219,12 @@ libm_common_src_files += fake_long_double.c
 # TODO: re-enable i387/e_sqrtf.S for x86, and maybe others.
 
 libm_common_cflags := -DFLT_EVAL_METHOD=0
+
+# Workaround the GCC "(long)fn -> lfn" optimization bug which will result in
+# self recursions for lrint, lrintf, and lrintl.
+# BUG: 14225968
+libm_common_cflags += -fno-builtin-rint -fno-builtin-rintf -fno-builtin-rintl
+
 libm_common_includes := $(LOCAL_PATH)/upstream-freebsd/lib/msun/src/
 
 libm_arm_includes := $(LOCAL_PATH)/arm
