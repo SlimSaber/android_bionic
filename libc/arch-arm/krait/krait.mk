@@ -11,4 +11,6 @@ $(call libc-add-cpu-variant-src,STRCPY,arch-arm/cortex-a15/bionic/strcpy.S)
 $(call libc-add-cpu-variant-src,STRLEN,arch-arm/cortex-a15/bionic/strlen.S)
 $(call libc-add-cpu-variant-src,MEMMOVE,arch-arm/krait/bionic/memmove.S)
 
+$(call libc-add-cpu-variant-src,STRCHR,bionic/strchr.cpp)
+
 include bionic/libc/arch-arm/generic/generic.mk
