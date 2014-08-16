@@ -10,7 +10,7 @@ $(call libc-add-cpu-variant-src,STRCAT,arch-arm/cortex-a15/bionic/strcat.S)
 $(call libc-add-cpu-variant-src,STRCPY,arch-arm/cortex-a15/bionic/strcpy.S)
 $(call libc-add-cpu-variant-src,STRLEN,arch-arm/cortex-a15/bionic/strlen.S)
 $(call libc-add-cpu-variant-src,MEMMOVE,arch-arm/krait/bionic/memmove.S)
-
-$(call libc-add-cpu-variant-src,STRCHR,bionic/strchr.cpp)
+# Use armv7 versions of strchr
+$(call libc-add-cpu-variant-src,STRCHR,arch-arm/bionic/armv7/strchr.S)
 
 include bionic/libc/arch-arm/generic/generic.mk
